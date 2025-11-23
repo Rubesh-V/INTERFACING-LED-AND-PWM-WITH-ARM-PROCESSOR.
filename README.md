@@ -46,23 +46,64 @@ Command: fromelf --bin projectname.axf --output filename.bin
 ⮚	Check the project folder for the generated .Bin file. ADD FILES:
 
 # ADD FILES:
+
 Target1:
+
 Source group1:
+
 Startuplpc17xx.s, delay.c , gpio.c , pwm.c , sysytemlpc17xx.c, main.c
+
 Header:
+
  delay.h, gpio.h, pwm.h, stdulils.h
 
 # PIN DIAGRAM :
 
+<img width="464" height="241" alt="image" src="https://github.com/user-attachments/assets/9d5823c3-cbba-4456-bc45-d4c3a73f8ccc" />
 
 # CIRCUIT DIAGRAM:
- 
+
+ <img width="872" height="435" alt="image" src="https://github.com/user-attachments/assets/33c3c655-b2b9-4a50-99a7-5458850d8d47" />
+
  
 # PROGRAM:
+```
+#include <lpc17xx.h> #include "pwm.h" #include "delay.h"
+
+#define CYCLE_TIME 100
+/* start the main program */ int main()
+{
+int dutyCycle;
+SystemInit();	/* Clock and PLL configuration */
+PWM_Init(CYCLE_TIME);	/* Initialize the PWM module and the Cycle time(Ton+Toff) is set to 255(similar to arduino)*/
+PWM_Start(PWM_3); /* Enable PWM output on PWM_1-PWM_4 (P2_0 - P2_3) */ while(1)
+{
+for(dutyCycle=0;dutyCycle<CYCLE_TIME;dutyCycle++) /* Increase the Brightness of the Leds */
+{
+PWM_SetDutyCycle(PWM_3,dutyCycle); //P2_2 DELAY_ms(10);
+}
+for(dutyCycle=CYCLE_TIME;dutyCycle>0;dutyCycle--) /* Decrease the Brightness of the Leds */
+{
+PWM_SetDutyCycle(PWM_3,dutyCycle); //P2_2 DELAY_ms(10);
+}
+}
+}
+```
+
+# PWM OUTPUT:
+
+<img width="636" height="154" alt="image" src="https://github.com/user-attachments/assets/d12cffe6-c774-4ec1-90bc-a3962931a453" />
 
 
  
 # Output:
+
+Simulation of interfacing LED and PWM, with ARM LPC 1768 is verified.
+<img width="565" height="434" alt="image" src="https://github.com/user-attachments/assets/564cdcf4-5eb0-411b-a03e-da027e273d5e" />
+
+# RESULT:
+
+Thus interfacing LED and PWM with ARM processor LPC1768 is done and the outputs are verified.
 
 
 
