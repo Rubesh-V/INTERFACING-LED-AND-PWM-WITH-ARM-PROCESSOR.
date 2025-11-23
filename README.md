@@ -1,7 +1,7 @@
 # INTERFACING LED AND PWM, WITH LPC1768 ARM PROCESSOR.
 
 # AIM:    
-   To write an embedded c program to interface LED and PWM with ARM processor          LPC1768
+   To write an embedded c program to interface LED and PWM with ARM processor         LPC1768
           
 # COMPONENTS REQUIRED:
 ##  HARDWARE:
